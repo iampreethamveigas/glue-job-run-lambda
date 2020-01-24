@@ -23,7 +23,7 @@ exports.handler = async (event, context, callback) => {
           }).promise();
 
 
-          const { Pool, Client } = require('pg');
+          const { Pool } = require('pg');
           const connectionString = process.env.connection_string
           const pool = new Pool({
                connectionString: connectionString,
@@ -36,11 +36,11 @@ exports.handler = async (event, context, callback) => {
           });
 
 
-          return response;
+          callback(response)
      }
      catch (e) {
           console.log(e);
-          return e;
+          throw e;
      }
 
 
